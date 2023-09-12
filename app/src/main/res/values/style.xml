@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ImageViewStar">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#FFC107</item>
+    </style>
+
+    //типа насследник верхнего, другие цвета добавить надо
+    <style name="ImageViewStar.Default">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#FFFFFF</item>
+    </style>
+    <style name="ImageViewStar.Dark">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#000000</item>
+    </style>
+
+    //стиль испрваить
+    <style name="EstimateButton">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#FFC107</item>
+    </style>
+
+    <style name="EstimateButton.Default">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#FFFFFF</item>
+    </style>
+    <style name="EstimateButton.Dark">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="color">#000000</item>
+    </style>
+
+
+
+
+</resources>

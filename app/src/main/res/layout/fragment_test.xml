@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/estimate_string"
+            android:textColor="@color/black"
+            android:textSize="@dimen/big_font_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/star_one"
+            style="@style/ImageViewStar.Default" />
+
+        <ImageView
+            android:id="@+id/star_two"
+            style="@style/ImageViewStar.Default" />
+
+        <ImageView
+            android:id="@+id/star_three"
+            style="@style/ImageViewStar.Default" />
+
+        <ImageView
+            android:id="@+id/star_four"
+            style="@style/ImageViewStar.Default" />
+
+        <ImageView
+            android:id="@+id/star_five"
+            style="@style/ImageViewStar.Default" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelEstimate"
+            android:text="@string/cancel_estimate"
+            style="@style/EstimateButton.Default" />
+
+        <Button
+            android:id="@+id/sendEstimate"
+            android:text="@string/send_estimate"
+            style="@style/EstimateButton.Default" />
+    </LinearLayout>
+
+
+</LinearLayout>

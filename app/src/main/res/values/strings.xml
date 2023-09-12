@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="estimate_string">Здравствуйте! Оцените наше приложение</string>
+    <string name="cancel_estimate">Отмена</string>
+    <string name="send_estimate">Отправить</string>
+</resources>
