@@ -25,7 +25,7 @@ class UserAgent {
             return ""
         }
 
-        fun getDevInfo(requireActivity: FragmentActivity): Any {
+        fun getDevInfo(requireActivity: RequestInterface<String>): Any {
             return ""
         }
     }

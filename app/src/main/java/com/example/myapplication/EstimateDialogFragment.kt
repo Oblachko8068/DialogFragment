@@ -12,11 +12,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import com.example.myapplication.databinding.EstimateDialogBinding
 
 
-class EstimateDialogFragment : BaseEstimateDialogFragment() {
+class EstimateDialogFragment : DialogFragment() {
 
     private var default_estimate = 5
     private var isDayTheme: Boolean = true
@@ -88,15 +89,11 @@ class EstimateDialogFragment : BaseEstimateDialogFragment() {
         ApplicationStatisticsReporter.sendRateAppGrade(default_estimate)
         //dismissDialog()
         if (default_estimate > 3) {
-            mainViewModel.loadInfo(object : RequestInterface<String> {
-                override fun onSuccess(data: String) {
-                    sentGoodEstimate(default_estimate.toString(), data)
-                }
 
-                override fun onFailure(errorData: ErrorData) {
-                    sentGoodEstimate(default_estimate.toString(), "")
-                }
-            })
+            val resultData = Bundle()
+            resultData.putInt("estimate", default_estimate)
+            setFragmentResult("firstResult", resultData)
+
             val handler = Handler()
             handler.postDelayed({
                 dismissDialog()
@@ -107,27 +104,9 @@ class EstimateDialogFragment : BaseEstimateDialogFragment() {
 
             val resultData = Bundle()
             resultData.putInt("estimate", default_estimate)
-            setFragmentResult("result", resultData)
-            /*val badEstimateFragment =
-                BadEstimateDialogFragment.newInstance(mainViewModel, isDayTheme, default_estimate)
-            activity?.let {
-                badEstimateFragment.show(
-                    it.supportFragmentManager,
-                    "BadEstimateFragmentTag"
-                )
-            }*/
+            setFragmentResult("firstResult", resultData)
         }
         default_estimate = 5
-    }
-
-    private fun sentGoodEstimate(estimateRating: String, info: String) {
-        val userAgent = UserAgent.getXLHDAgent(requireActivity())
-        @SuppressLint("HardwareIds") var androidID =
-            Settings.Secure.getString(requireActivity().contentResolver, Settings.Secure.ANDROID_ID)
-        if (androidID == null) {
-            androidID = ""
-        }
-        sendEstimate(estimateRating, androidID, "", info, userAgent)
     }
 
     private fun requestPlayMarket() {
@@ -153,6 +132,10 @@ class EstimateDialogFragment : BaseEstimateDialogFragment() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun dismissDialog() {
+        dismiss()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

@@ -8,16 +8,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.setFragmentResult
 import com.example.myapplication.databinding.BadEstimateDialogBinding
 import java.lang.NullPointerException
 
-class BadEstimateDialogFragment : BaseEstimateDialogFragment() {
+class BadEstimateDialogFragment : DialogFragment() {
 
     private var default_estimate = 0
     private lateinit var binding: BadEstimateDialogBinding
     //private lateinit var bindingNightBad: BadEstimateDialogNightBinding
     private var isDayTheme: Boolean = true
-    override lateinit var mainViewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,13 +57,15 @@ class BadEstimateDialogFragment : BaseEstimateDialogFragment() {
                     if (androidID == null) {
                         androidID = ""
                     }
-                    sendEstimate(
-                        estimateRating,
-                        androidID,
-                        stringTextEmail,
-                        stringTextEstimate,
-                        userAgent
-                    )
+
+                    val resultData = Bundle()
+                    resultData.putString("estimateRating", estimateRating)
+                    resultData.putString("androidID", androidID)
+                    resultData.putString("stringTextEmail", stringTextEmail)
+                    resultData.putString("stringTextEstimate", stringTextEstimate)
+                    resultData.putString("userAgent", userAgent)
+                    setFragmentResult("badResult", resultData)
+
                     dismissDialog()
                 } else {
                     Toast.makeText(
@@ -78,18 +81,23 @@ class BadEstimateDialogFragment : BaseEstimateDialogFragment() {
                         Settings.Secure.ANDROID_ID
                     )
                         ?: ""
-                sendEstimate(
-                    estimateRating,
-                    androidID,
-                    stringTextEmail,
-                    stringTextEstimate,
-                    userAgent
-                )
+
+                val resultData = Bundle()
+                resultData.putString("estimateRating", estimateRating)
+                resultData.putString("androidID", androidID)
+                resultData.putString("stringTextEmail", stringTextEmail)
+                resultData.putString("stringTextEstimate", stringTextEstimate)
+                resultData.putString("userAgent", userAgent)
+                setFragmentResult("badResult", resultData)
+
                 dismissDialog()
             }
         } catch (e: NullPointerException) {
             e.printStackTrace()
         }
+    }
+    private fun dismissDialog() {
+        dismiss()
     }
 
 
@@ -104,7 +112,6 @@ class BadEstimateDialogFragment : BaseEstimateDialogFragment() {
 
         @JvmStatic
         fun newInstance(
-            mainViewModel: MainViewModel,
             isDayTheme: Boolean,
             default_estimate: Int
         ) = BadEstimateDialogFragment().apply {
@@ -112,7 +119,6 @@ class BadEstimateDialogFragment : BaseEstimateDialogFragment() {
                     putBoolean(IS_DAY_BAD_THEME_DATA, isDayTheme)
                     putInt(DEFAULT_ESTIMATE_DATA, default_estimate)
                 }
-            this.mainViewModel = mainViewModel
         }
     }
 }
